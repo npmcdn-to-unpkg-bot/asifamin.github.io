@@ -1,25 +1,37 @@
-var dependencyManager = (function(){
-    var loadChartdepen =  function(){
-        head.load(["http://asifamin.github.io/glue-module-lib/assets/js/lib.js"], function() {
-            if($("#charts").length > 0){
-                console.log('chart is present');
+// globals
+var qg = qg || {};
 
-                //head.load("style.css", function(){});
-                head.load(["https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.2.3/highcharts.js"], function() {
-                    console.log('highchart lib loaded');
-                });
-            }
+/*global qg*/
+(function(qg) {
+    'use strict';
+
+    var mapper = {
+        chartDep : [
+            "http://asifamin.github.io/glue-module-lib/assets/js/lib.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.2.3/highcharts.js"
+        ]
+    }
+
+    qg.initLoad = function(dm , callbackFunc){
+
+        jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js" , function(e){
+            head.load(dm, function() {
+                callbackFunc()
+            });
         });
     }
 
-    return {
-        loadChartdepen : loadChartdepen()
+    qg.loadChartdepen =  function(callbackFunc){
+
+        if($("#chart").length > 0){
+            console.log('chart id found');
+            qg.initLoad(mapper.chartDep , callbackFunc);
+        }
+        else {
+            console.log('Please make sure you have included the "chart" id preferable on the body tag to load the dependencies');
+        }
     }
+}(qg));
 
 
-})();
 
-
-//# sourceMappingURL=loader.js.map
-
-//# sourceMappingURL=loader.js.map
