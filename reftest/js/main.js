@@ -38,13 +38,10 @@ $(function() {
 });
 
 
-console.log(document.referrer);
+var referrerVal = document.referrer;
+console.log(referrerVal);
 
-var hostName = window.location.hostname;
-
-console.log(hostName);
-
-if((hostName.search(/asifamin/i)) != -1 ){
+if((referrerVal.search(/asifamin/i)) != -1 ){
     $("#department").val("datsip");
 }
 
