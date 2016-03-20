@@ -41,6 +41,9 @@ $(function() {
 console.log(document.referrer);
 
 var hostName = window.location.hostname;
+
+console.log(hostName);
+
 $("#department").val("datsip");
 if((hostName.search(/datsip/i)) != -1 ){
     $("#department").val("datsip");
