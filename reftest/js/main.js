@@ -44,8 +44,7 @@ var hostName = window.location.hostname;
 
 console.log(hostName);
 
-$("#department").val("datsip");
-if((hostName.search(/datsip/i)) != -1 ){
+if((hostName.search(/asifamin/i)) != -1 ){
     $("#department").val("datsip");
 }
 
