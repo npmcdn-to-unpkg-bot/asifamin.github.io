@@ -59,9 +59,31 @@ var tables = [
     /* 3.) === custom js files ===*/
     /* src.js+'main.js' */
 ];
+
+var loader = [
+    'src/loader.js'
+];
 /*=====================================================================
  JS TASKS
  ======================================================================*/
+gulp.task('loader',function(){
+    gulp.src(loader)
+        .pipe(sourcemaps.init())
+        .pipe(plumber())
+        .pipe(debug({
+            title: 'js'
+        }))
+        .pipe(concat('loader.js',{
+            newLine: ''
+        }))
+        .pipe(sourcemaps.write('.', {
+            sourceRoot: src.js
+        }))
+        .pipe(gulp.dest(build.js))
+        .pipe(reload({
+            stream: true
+        }));
+});
 gulp.task('charts',function(){
     gulp.src(charts)
         .pipe(sourcemaps.init())
@@ -193,7 +215,7 @@ gulp.task('watcher',function(){
 /*=====================================================================
  TASK RUNNERS
  ======================================================================*/
-gulp.task('default',['sass','html','images', 'charts' , 'tables']);
+gulp.task('default',['sass','html','images','loader', 'charts' , 'tables']);
 gulp.task('watch',['watcher']);
 gulp.task('develop',['default','watch']);
 
