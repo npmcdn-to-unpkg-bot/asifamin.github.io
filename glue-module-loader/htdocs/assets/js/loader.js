@@ -93,6 +93,6 @@ if($("#charts").length > 0){
                 data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
             }]
         });
-    })
+    });
 }
 //# sourceMappingURL=loader.js.map
