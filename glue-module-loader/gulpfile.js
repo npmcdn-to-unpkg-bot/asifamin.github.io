@@ -40,7 +40,8 @@ var build = {
 
 var common = [
     /* 1.) === external modules - for example glue-module-lib or glue-module-data ===*/
- 
+    'src/common/node_modules/jquery/dist/jquery.min.js',
+    'src/common/node_modules/bootstrap/dist/js/bootstrap.min.js'
     /* 2.) === external js libraries from node_modules folder ===*/
 
     /* 3.) === custom js files ===*/
