@@ -1,5 +1,5 @@
 var glue = {
-    commonLib : function () {
+    commonLibs : function (callback) {
         console.log("common lib loaded");
         $.getScript("http://asifamin.github.io/glue-module-loader/htdocs/assets/js/charts.js" , callback);
     },
