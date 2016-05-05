@@ -38,6 +38,16 @@ var build = {
     css: basepath.build+'assets/css/'
 };
 
+var common = [
+    /* 1.) === external modules - for example glue-module-lib or glue-module-data ===*/
+    'src/common/node_modules/jquery/dist/jquery.min.js',
+    'src/common/node_modules/bootstrap/dist/js/bootstrap.min.js'
+    /* 2.) === external js libraries from node_modules folder ===*/
+
+    /* 3.) === custom js files ===*/
+    /* src.js+'main.js' */
+];
+
 var charts = [
     /* 1.) === external modules - for example glue-module-lib or glue-module-data ===*/
     'src/common/node_modules/jquery/dist/jquery.min.js',
@@ -84,6 +94,25 @@ gulp.task('loader',function(){
             stream: true
         }));
 });
+gulp.task('common',function(){
+    gulp.src(common)
+        .pipe(sourcemaps.init())
+        .pipe(plumber())
+        .pipe(debug({
+            title: 'js'
+        }))
+        .pipe(concat('common.js',{
+            newLine: ''
+        }))
+        .pipe(sourcemaps.write('.', {
+            sourceRoot: src.js
+        }))
+        .pipe(gulp.dest(build.js))
+        .pipe(reload({
+            stream: true
+        }));
+});
+
 gulp.task('charts',function(){
     gulp.src(charts)
         .pipe(sourcemaps.init())
@@ -124,13 +153,6 @@ gulp.task('tables',function(){
 
 // testing related tasks
 gulp.task('concat:test', function() {
-    //gulp.src(loadScripts)
-    //    ////.pipe(addsrc.append(src.js+'/lib/*.js'))
-    //    //.pipe(addsrc.append(src.js+'/custom/*.js'))
-    //    //.pipe(addsrc.append(src.js+'/custom/*.js'))
-    //    .pipe(plugins.concat('all.js'))
-    //    .pipe(gulp.dest(src.test.unit));
-
     return gulp.src(loadScripts)
         .pipe(plugins.concat('all.js'))
         .pipe(gulp.dest(src.test.unit));
@@ -215,7 +237,7 @@ gulp.task('watcher',function(){
 /*=====================================================================
  TASK RUNNERS
  ======================================================================*/
-gulp.task('default',['sass','html','images','loader', 'charts' , 'tables']);
+gulp.task('default',['sass','html','images','loader', 'common', 'charts' , 'tables']);
 gulp.task('watch',['watcher']);
 gulp.task('develop',['default','watch']);
 
