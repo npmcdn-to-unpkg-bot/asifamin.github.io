@@ -1,8 +1,8 @@
 var glue = glue || {};
 glue.loader = {
-    init : function () {
-        if($("#charts").length > 0)  this.loadCharts();
-        else this.commonLibs();
+    init : function (callback) {
+        if($("#charts").length > 0)  this.loadCharts(callback);
+        else this.commonLibs(callback);
     },
     commonLibs : function (callback) {
         console.log("common lib loaded");
