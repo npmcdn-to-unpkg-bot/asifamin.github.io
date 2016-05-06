@@ -10,11 +10,11 @@ qg.glue.loader = {
         else this.commonLibs(callback);
     },
     commonLibs : function (callback) {
-        console.log("common lib loaded");
+        console.log('%c loader could not find any specific classes so just the common libraries has been loaded ', 'background: #222; color: #bada55');
         $.getScript("http://asifamin.github.io/glue-module-loader/htdocs/assets/js/common.js" , callback);
     },
     loadCharts : function (callback) {
-        console.log("charts lib loaded");
+        console.log('%c charts libraries has been loaded', 'background: #222; color: #bada55');
         $.getScript("http://asifamin.github.io/glue-module-loader/htdocs/assets/js/charts.js" , callback);
     }
 };
