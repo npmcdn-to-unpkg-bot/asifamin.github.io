@@ -1,5 +1,10 @@
-var glue = glue || {};
-glue.loader = {
+//global
+var qg = qg || {};
+
+// glue
+qg.glue = qg.glue || {};
+
+qg.glue.loader = {
     init : function (callback) {
         if($("#charts").length > 0)  this.loadCharts(callback);
         else this.commonLibs(callback);
