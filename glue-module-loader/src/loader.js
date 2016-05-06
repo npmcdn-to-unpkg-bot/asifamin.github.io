@@ -6,7 +6,7 @@ qg.glue = qg.glue || {};
 
 qg.glue.loader = {
     init : function (callback) {
-        if($("#charts").length > 0)  this.loadCharts(callback);
+        if($(".qg-glue-charts").length > 0)  this.loadCharts(callback);
         else this.commonLibs(callback);
     },
     commonLibs : function (callback) {
