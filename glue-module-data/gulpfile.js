@@ -46,7 +46,7 @@ var loadScripts = [
     /* 2.) === external js libraries from node_modules folder ===*/
 
     /* 3.) === custom js files ===*/
-    src.js+'main.js',
+    src.js+'main.js'
 ];
 
 /*=====================================================================
@@ -54,24 +54,24 @@ var loadScripts = [
  ======================================================================*/
 gulp.task('js',function(){
     gulp.src(loadScripts)
-       ////.pipe(addsrc.append(src.js+'/lib/*.js'))
-       //.pipe(addsrc.append(src.js+'/custom/*.js'))
-       //.pipe(addsrc.append(src.js+'/custom/*.js'))
-       .pipe(sourcemaps.init())
-       .pipe(plumber())
-       .pipe(debug({
-           title: 'js'
-       }))
-       .pipe(concat('data.js',{
-           newLine: ''
-       }))
-       .pipe(sourcemaps.write('.', {
-           sourceRoot: src.js
-       }))
-       .pipe(gulp.dest(build.js))
-       .pipe(reload({
-           stream: true
-       }));
+        ////.pipe(addsrc.append(src.js+'/lib/*.js'))
+        //.pipe(addsrc.append(src.js+'/custom/*.js'))
+        //.pipe(addsrc.append(src.js+'/custom/*.js'))
+        .pipe(sourcemaps.init())
+        .pipe(plumber())
+        .pipe(debug({
+            title: 'js'
+        }))
+        .pipe(concat('data.js',{
+            newLine: ''
+        }))
+        .pipe(sourcemaps.write('.', {
+            sourceRoot: src.js
+        }))
+        .pipe(gulp.dest(build.js))
+        .pipe(reload({
+            stream: true
+        }));
 });
 
 // testing related tasks
