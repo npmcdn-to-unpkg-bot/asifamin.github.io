@@ -1,3 +1,4 @@
+console.log('%c loader module loaded ', 'background: #222; color: #bada55');
 //global
 var qg = qg || {};
 
