@@ -31,7 +31,7 @@ qg.glue.loader = {
                 //output the script (load it from google api)
                 document.write("<scr" + "ipt type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></scr" + 'ipt>')
             }
-            setTimeout("checkJquery()", 50);
+            setTimeout(this.checkJquery(), 50);
         } else {
             console.log("jquery is already there");
         }
