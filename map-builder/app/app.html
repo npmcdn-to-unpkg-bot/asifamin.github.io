@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="col-lg-6">
+        <form>
+            <fieldset>
+                <legend><strong>Data Layer</strong></legend>
+                <div class="form-group">
+                    <label for="datalayerurl">Data Layer URL</label>
+                    <input type="text" class="form-control" id="datalayerurl" placeholder="Data Layer URL">
+                </div>
+            </fieldset>
+        </form>
+        <br />
+        <br />
+        <form>
+            <fieldset>
+                <legend><strong>Map Options</strong></legend>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Share my location
+                    </label>
+                </div>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label for="height">Height (in px)</label>
+                        <input type="text" class="form-control" id="height" placeholder="Height (in px)">
+                    </div>
+                    <div class="form-group">
+                        <label for="width">Width (in px)</label>
+                        <input type="text" class="form-control" id="width" placeholder="Width (in px)">
+                    </div>
+                </div>
+                <br />
+                <div class="form-inline">
+                    <p><strong>Center of map</strong></p>
+                    <div class="form-group">
+                        <label for="latitude">latitude</label>
+                        <input type="text" class="form-control" id="latitude" placeholder="latitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude" class="qg-visually-hidden">longitude</label>
+                        <input type="text" class="form-control" id="longitude" placeholder="longitude">
+                    </div>
+                </div>
+                <br />
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="initialZoomLevel" class="col-sm-3 control-label text-left">Initial map zoom level</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="initialZoomLevel" placeholder="Initial map zoom level">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="minZoomLevel" class="col-sm-3 control-label">Minimum map zoom level</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="minZoomLevel" placeholder="Min map zoom level">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxZoomLevel" class="col-sm-3 control-label">Maximum map zoom level</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="maxZoomLevel" placeholder="Max map zoom level">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <br />
+        <button type="submit" class="btn btn-primary btn-lg">Preview</button>
+    </div>
+
+    <div class="col-lg-6">
+        <!--<div id="map"></div>-->
+        <map></map>
+    </div>
+</div>
+
+

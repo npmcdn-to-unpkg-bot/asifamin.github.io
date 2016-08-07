@@ -44,23 +44,31 @@
         layer.bindPopup(popupContent);
     }
 
-    L.geoJson([bicycleRental, campus], {
-
-        style: function (feature) {
-            return feature.properties && feature.properties.style;
+    var someFeatures = [{
+        "type": "Feature",
+        "properties": {
+            "name": "Coors Field",
+            "show_on_map": true
         },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-104.99404, 39.75621]
+        }
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name": "Busch Field",
+            "show_on_map": true
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-104.98404, 39.74621]
+        }
+    }];
 
-        onEachFeature: onEachFeature,
-
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, {
-                radius: 8,
-                fillColor: "#ff7800",
-                color: "#000",
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
+    L.geoJson(someFeatures, {
+        filter: function(feature, layer) {
+            return feature.properties.show_on_map;
         }
     }).addTo(map);
 

@@ -1,50 +1,13 @@
-<html>
-<head>
-    <title>A Leaflet map!</title>
-    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
-    <style>
-        #map{ height: 400px}
-    </style>
-</head>
-<body>
+import {Component} from "angular2/core";
+import L from 'leaflet';
 
-<div id="map"></div>
-
-<script>
-    var jqxhr = $.ajax({
-        url: "https://data.qld.gov.au/api/action/datastore_search_sql?sql=SELECT%20*%20from%20%228b9178e0-2995-42ad-8e55-37c15b4435a3%22"
-    }).done(function( data ) {
-        var rel_Data = data.result.records.map(function(item) {
-//            console.log(item.Latitude);
-//            console.log(item.Longitude);
-
-            return {
-            "type": "Feature",
-            "properties": {
-                    "name": item.Name,
-                    "show_on_map": true
-                },
-            "geometry": {
-                    "type": "Point",
-                    "coordinates": [item.Longitude, item.Latitude]
-                }
-            }
-
-            });
-              L.geoJson(rel_Data, {
-                  filter: function(feature, layer) {
-                      return feature.properties.show_on_map;
-                    }
-               }).addTo(map);
-
-         });
-
-
-
-
-    var bicycleRental = {
+@Component({
+    selector: 'map',
+    templateUrl: 'app/maps/maps.html',
+    styleUrls: ['app/maps/maps.css'],
+})
+export class MapsComponent {
+    bicycleRental = {
         "type": "FeatureCollection",
         "features": [
             {
@@ -147,7 +110,7 @@
             }
         ]
     };
-    var campus = {
+    campus = {
         "type": "Feature",
         "properties": {
             "popupContent": "This is the Auraria West Campus",
@@ -204,50 +167,35 @@
             ]
         }
     };
+    public map;
+    public tile;
+    public dat;
+    ngAfterContentInit() {
+        this.map = L.map('map').setView([39.74739, -105], 13);
+        this.tile = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'mapbox.light'
+        }).addTo(this.map);
+        this.dat = L.geoJson([this.bicycleRental, this.campus], {
 
-    var map = L.map('map').setView([-19.32585, 146.75665], 15);
-
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        id: 'mapbox.light'
-    }).addTo(map);
-
-    //   var someFeatures = [{
-    //     "type": "Feature",
-    //     "properties": {
-    //         "name": "Coors Field",
-    //         "show_on_map": true
-    //     },
-    //     "geometry": {
-    //         "type": "Point",
-    //         "coordinates": [-104.99404, 39.75621]
-    //     }
-    // }, {
-    //     "type": "Feature",
-    //     "properties": {
-    //         "name": "Busch Field",
-    //         "show_on_map": true
-    //     },
-    //     "geometry": {
-    //         "type": "Point",
-    //         "coordinates": [-104.98404, 39.74621]
-    //     }
-    // }];
-
-    // console.log(someFeatures);
-
-    // L.geoJson(someFeatures, {
-    //     filter: function(feature, layer) {
-    //         return feature.properties.show_on_map;
-    //     }
-    // }).addTo(map);
+            style: function (feature) {
+                return feature.properties && feature.properties.style;
+            },
 
 
-</script>
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
-        ':35729/livereload.js?snipver=2"></' + 'script>')</script>
-</body>
-</html>
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: "#ff7800",
+                    color: "#000",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            }
+        }).addTo(this.map);
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coors Field",
+        "show_on_map": true
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[102, 0], [103, 1], [104, 0], [105, 1]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Busch Field",
+        "show_on_map": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-104.98404, 39.74621]
+      }
+    }]
+}
