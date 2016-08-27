@@ -5,15 +5,22 @@ var htmlreplace = require('gulp-html-replace');
 var replace = require('gulp-replace-task');
 var dom  = require('gulp-dom');
 var shell = require('gulp-shell');
+var argv = require('yargs').argv;
 
-gulp.task('gulpShellTask', shell.task([
-    'cd brprpart',
-    'git add --all',
-    'git commit -m "1.0.5"',
-    'git tag -a 1.0.5 -m "1.0.5"',
-    'git push --tags',
-    'git push origin'
-]));
+gulp.task('testingArguments', function() {
+    // console.log(process.argv);
+    console.log(argv.x, argv.y);
+});
+gulp.task('gulpShellTask', function () {
+    shell.task([
+        process.chdir('brprpart'),
+        'git add --all',
+        'git commit -m '+argv.version+'',
+        'git tag -a '+argv.version+' -m "'+argv.version+'"',
+        'git push --tags',
+        'git push origin'
+    ])()
+});
 
 // gulp.task('lint', function() {
 //     return gulp.src('./document-links.js')

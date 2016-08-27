@@ -28,7 +28,6 @@ System.register(["angular2/core", "./maps/maps.component"], function(exports_1, 
                     core_1.Component({
                         selector: 'my-app',
                         templateUrl: 'app/app.html',
-                        styleUrls: ['app/app.component.css'],
                         directives: [maps_component_1.MapsComponent]
                     }), 
                     __metadata('design:paramtypes', [])
